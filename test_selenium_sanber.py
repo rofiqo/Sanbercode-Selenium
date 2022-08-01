@@ -81,7 +81,7 @@ class TestLogin(unittest.TestCase):
         # self.assertIn('not found', response_data)
         self.assertEqual(response_message, 'diperlukan email')
         
-     def test_d_failed_login_with_email_and_password_invalid(self): 
+     def test_e_failed_login_with_email_and_password_invalid(self): 
         # steps
         browser = self.browser #buka web browser
         browser.get("https://myappventure.herokuapp.com/login") # buka situs
