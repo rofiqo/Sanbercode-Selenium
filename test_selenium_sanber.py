@@ -62,6 +62,42 @@ class TestLogin(unittest.TestCase):
 
         # self.assertIn('not found', response_data)
         self.assertEqual(response_message, 'diperlukan email')
+        
+     def test_d_failed_login_with_empty_email(self): 
+        # steps
+        browser = self.browser #buka web browser
+        browser.get("https://myappventure.herokuapp.com/login") # buka situs
+        time.sleep(3)
+        browser.find_element(By.NAME,"email").send_keys("") # isi email
+        time.sleep(1)
+        browser.find_element(By.NAME,"password").send_keys("fiqo456") # isi password
+        time.sleep(1)
+        browser.find_element(By.CSS_SELECTOR,('button[type=submit]')).submit() # klik tombol masuk
+
+        # validasi
+        # response_data = browser.find_element(By.CSS_SELECTOR,'div[data-testid="error-password"]').text
+        response_message = browser.find_element(By.CSS_SELECTOR,'div[data-testid="error-email"]').text
+
+        # self.assertIn('not found', response_data)
+        self.assertEqual(response_message, 'diperlukan email')
+        
+     def test_d_failed_login_with_email_and_password_invalid(self): 
+        # steps
+        browser = self.browser #buka web browser
+        browser.get("https://myappventure.herokuapp.com/login") # buka situs
+        time.sleep(3)
+        browser.find_element(By.NAME,"email").send_keys("rofiqo123@gmail.com") # isi email
+        time.sleep(1)
+        browser.find_element(By.NAME,"password").send_keys("fiqo654") # isi password
+        time.sleep(1)
+        browser.find_element(By.CSS_SELECTOR,('button[type=submit]')).submit() # klik tombol masuk
+
+        # validasi
+        # response_data = browser.find_element(By.CSS_SELECTOR,'div[data-testid="error-password"]').text
+        response_message = browser.find_element(By.CSS_SELECTOR,'div[data-testid="error-email"]').text
+
+        # self.assertIn('not found', response_data)
+        self.assertEqual(response_message, 'diperlukan email')
 
     def tearDown(self): 
         self.browser.close() 
